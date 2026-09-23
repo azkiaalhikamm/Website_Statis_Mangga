@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react';
-import { getProducts, WHATSAPP_URL } from '../data';
+import { WHATSAPP_URL } from '../data';
 import { ShoppingBag } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useSupabaseData } from '../hooks/useSupabaseData';
 
 export default function ProductsPage() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const { language, t } = useLanguage();
+  const { t } = useLanguage();
   const { products: productsList, isLoading } = useSupabaseData();
 
   useEffect(() => {

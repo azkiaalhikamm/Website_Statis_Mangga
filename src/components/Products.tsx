@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { X, Star } from 'lucide-react';
 import WhatsappIcon from './icons/WhatsappIcon';
-import { getProducts, WHATSAPP_URL } from '../data';
+import { WHATSAPP_URL } from '../data';
 import type { Product } from '../data';
 import { useLanguage } from '../context/LanguageContext';
 import { useSupabaseData } from '../hooks/useSupabaseData';
@@ -431,7 +431,7 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
 
 export default function Products() {
   const [selected, setSelected] = useState<Product | null>(null);
-  const { language, t } = useLanguage();
+  const { t } = useLanguage();
   const { products, isLoading } = useSupabaseData();
 
   if (isLoading) {
