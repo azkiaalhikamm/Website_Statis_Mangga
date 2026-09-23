@@ -59,16 +59,13 @@ export default function QualityPromise() {
         </div>
 
         {/* Cards */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: '24px',
-        }}>
+        <div className="feature-grid">
           {features.map((feature, i) => {
             const Icon = feature.Icon;
             return (
               <div
                 key={i}
+                className="feature-card"
                 style={{
                   backgroundColor: '#ffffff',
                   borderRadius: '16px',
@@ -184,18 +181,47 @@ export default function QualityPromise() {
       </div>
 
       <style>{`
+        .feature-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 24px;
+        }
+
         @media (max-width: 1024px) {
-          section > div > div:last-child {
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 20px !important;
+          .feature-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
           }
         }
-        @media (max-width: 640px) {
-          section > div > div:last-child {
-            grid-template-columns: 1fr !important;
+
+        @media (max-width: 768px) {
+          .feature-grid {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 32px;
+            margin-left: -24px;
+            margin-right: -24px;
+            padding-left: 24px;
+            padding-right: 24px;
+            gap: 16px;
+            /* Hide scrollbar for Chrome, Safari and Opera */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;  /* IE and Edge */
           }
-          section {
-            padding: 80px 20px !important;
+          
+          .feature-grid::-webkit-scrollbar {
+            display: none;
+          }
+
+          .feature-card {
+            flex: 0 0 80%;
+            scroll-snap-align: center;
+          }
+
+          #kenapa-kami-teaser {
+            padding: 80px 24px !important;
           }
         }
       `}</style>
