@@ -1,0 +1,15 @@
+{
+  "id": "test-123",
+  "name_id": "Test",
+  "name_en": "Test",
+  "desc_id": "Test",
+  "desc_en": "Test",
+  "price_range_id": "Test",
+  "price_range_en": "Test",
+  "weight_id": "Test",
+  "weight_en": "Test",
+  "taste_profile_id": ["Test"],
+  "taste_profile_en": ["Test"],
+  "image_url": "Test",
+  "color": "#fff"
+}
