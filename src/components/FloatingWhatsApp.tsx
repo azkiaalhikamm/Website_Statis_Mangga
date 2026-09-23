@@ -20,7 +20,7 @@ export default function FloatingWhatsApp() {
           display: 'flex',
           alignItems: 'center',
           gap: '10px',
-          backgroundColor: '#25D366',
+          backgroundColor: '#1e4433',
           color: '#fff',
           fontFamily: 'Plus Jakarta Sans, sans-serif',
           fontSize: '14px',
@@ -28,22 +28,24 @@ export default function FloatingWhatsApp() {
           padding: '14px 22px 14px 18px',
           borderRadius: '100px',
           textDecoration: 'none',
-          boxShadow: '0 4px 20px rgba(37,211,102,0.35)',
+          boxShadow: '0 8px 24px rgba(30,68,51,0.2)',
           transition: 'all 0.3s ease',
           animation: 'pulse-slow 3s ease-in-out infinite',
         }}
         onMouseEnter={(e) => {
           const el = e.currentTarget as HTMLAnchorElement;
-          el.style.backgroundColor = '#1aad54';
+          el.style.backgroundColor = '#f5a623';
+          el.style.color = '#1e4433';
           el.style.transform = 'translateY(-3px) scale(1.02)';
-          el.style.boxShadow = '0 8px 28px rgba(37,211,102,0.45)';
+          el.style.boxShadow = '0 12px 30px rgba(245,166,35,0.3)';
           el.style.animation = 'none';
         }}
         onMouseLeave={(e) => {
           const el = e.currentTarget as HTMLAnchorElement;
-          el.style.backgroundColor = '#25D366';
+          el.style.backgroundColor = '#1e4433';
+          el.style.color = '#fff';
           el.style.transform = 'translateY(0) scale(1)';
-          el.style.boxShadow = '0 4px 20px rgba(37,211,102,0.35)';
+          el.style.boxShadow = '0 8px 24px rgba(30,68,51,0.2)';
           el.style.animation = 'pulse-slow 3s ease-in-out infinite';
         }}
       >

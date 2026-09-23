@@ -1,4 +1,5 @@
-import { MapPin, Phone, Clock } from 'lucide-react';
+import { MapPin, Clock } from 'lucide-react';
+import WhatsappIcon from './icons/WhatsappIcon';
 import { WHATSAPP_NUMBER, WHATSAPP_URL } from '../data';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -69,23 +70,19 @@ export default function Contact() {
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-4px)';
               e.currentTarget.style.boxShadow = '0 12px 30px rgba(0,0,0,0.06)';
-              e.currentTarget.style.borderColor = 'rgba(245,166,35,0.4)';
+              e.currentTarget.style.borderColor = 'rgba(37,211,102,0.4)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
               e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.03)';
               e.currentTarget.style.borderColor = 'rgba(26,58,42,0.08)';
             }}>
-              <div style={{
-                width: '56px', height: '56px', borderRadius: '16px',
-                backgroundColor: 'rgba(37, 211, 102, 0.1)', color: '#25D366',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
-              }}>
-                <Phone size={28} />
+              <div style={{ backgroundColor: 'rgba(37,211,102,0.1)', padding: '16px', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <WhatsappIcon size={28} color="#25D366" />
               </div>
               <div>
-                <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '20px', fontWeight: 700, color: '#1e4433', marginBottom: '6px' }}>WhatsApp</h3>
-                <p style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: '15px', color: '#5e5754', marginBottom: '8px' }}>{t('contact.waDesc')}</p>
+                <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '22px', fontWeight: 700, color: '#1e4433', marginBottom: '8px' }}>WhatsApp</h3>
+                <p style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: '15px', color: '#5e5754', marginBottom: '8px', lineHeight: 1.6 }}>{t('contact.waDesc')}</p>
                 <p style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: '15px', fontWeight: 600, color: '#25D366' }}>{WHATSAPP_NUMBER}</p>
               </div>
             </div>
@@ -116,15 +113,11 @@ export default function Contact() {
               e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.03)';
               e.currentTarget.style.borderColor = 'rgba(26,58,42,0.08)';
             }}>
-              <div style={{
-                width: '56px', height: '56px', borderRadius: '16px',
-                backgroundColor: 'rgba(245,166,35,0.1)', color: '#f5a623',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
-              }}>
-                <MapPin size={28} />
+              <div style={{ backgroundColor: 'rgba(245,166,35,0.1)', padding: '16px', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <MapPin size={28} color="#f5a623" />
               </div>
               <div>
-                <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '20px', fontWeight: 700, color: '#1e4433', marginBottom: '6px' }}>{t('contact.addressTitle')}</h3>
+                <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '22px', fontWeight: 700, color: '#1e4433', marginBottom: '8px' }}>{t('contact.addressTitle')}</h3>
                 <p style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: '15px', color: '#5e5754', lineHeight: 1.6 }} dangerouslySetInnerHTML={{ __html: t('contact.addressDesc') }} />
               </div>
             </div>
@@ -132,26 +125,34 @@ export default function Contact() {
 
           {/* Working Hours */}
           <div style={{
-            backgroundColor: '#1e4433',
+            backgroundColor: '#fff',
             padding: '32px',
             borderRadius: '20px',
+            border: '1px solid rgba(26,58,42,0.08)',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
             display: 'flex',
             alignItems: 'flex-start',
             gap: '20px',
+            transition: 'all 0.3s ease',
             height: '100%',
             boxSizing: 'border-box',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-4px)';
+            e.currentTarget.style.boxShadow = '0 12px 30px rgba(0,0,0,0.06)';
+            e.currentTarget.style.borderColor = 'rgba(30,68,51,0.2)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.03)';
+            e.currentTarget.style.borderColor = 'rgba(26,58,42,0.08)';
           }}>
-            <div style={{
-              width: '56px', height: '56px', borderRadius: '16px',
-              backgroundColor: 'rgba(255,255,255,0.1)', color: '#f5a623',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
-            }}>
-              <Clock size={28} />
+            <div style={{ backgroundColor: 'rgba(30,68,51,0.06)', padding: '16px', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <Clock size={28} color="#1e4433" />
             </div>
             <div>
-              <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '20px', fontWeight: 700, color: '#fff', marginBottom: '6px' }}>{t('contact.hoursTitle')}</h3>
-              <p style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.7)', marginBottom: '4px' }}>{t('contact.hoursDesc')}</p>
+              <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '22px', fontWeight: 700, color: '#1e4433', marginBottom: '8px' }}>{t('contact.hoursTitle')}</h3>
+              <p style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: '15px', color: '#5e5754', lineHeight: 1.6 }}>{t('contact.hoursDesc')}</p>
             </div>
           </div>
           

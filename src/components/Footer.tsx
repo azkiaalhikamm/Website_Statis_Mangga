@@ -28,7 +28,6 @@ export default function Footer() {
     { label: t('nav.produk'), href: '#produk' },
     { label: t('nav.tentang'), href: '#tentang' },
     { label: t('nav.faq'), href: '#faq' },
-    { label: 'Admin Dashboard', href: '#admin' },
   ];
 
   const handleNav = (href: string) => {
