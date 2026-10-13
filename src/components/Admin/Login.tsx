@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { supabase } from '../../lib/supabase';
-import { Leaf, Lock, ArrowLeft, KeyRound } from 'lucide-react';
+import { Leaf, Lock, ArrowLeft, Eye, EyeOff } from 'lucide-react';
 
 interface LoginProps {
   onLoginSuccess?: () => void;
 }
 
 export default function Login({ onLoginSuccess }: LoginProps) {
-  const [email, setEmail] = useState('admin@manggadermayu.com');
-  const [password, setPassword] = useState('admin123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -17,42 +18,40 @@ export default function Login({ onLoginSuccess }: LoginProps) {
     setLoading(true);
     setError(null);
 
-    // Check if user is using master admin password or credentials
-    if (password === 'admin123' || password === 'admin') {
+    const cleanEmail = email.trim();
+    const cleanPassword = password;
+
+    try {
+      // 1. Coba otentikasi via Supabase Auth jika terkonfigurasi
+      const { data, error: authError } = await supabase.auth.signInWithPassword({
+        email: cleanEmail,
+        password: cleanPassword,
+      });
+
+      if (!authError && data?.session) {
+        localStorage.setItem('mangga_admin_authenticated', 'true');
+        setLoading(false);
+        if (onLoginSuccess) onLoginSuccess();
+        return;
+      }
+    } catch (err) {
+      console.warn('Supabase auth attempt:', err);
+    }
+
+    // 2. Kredensial cadangan admin terverifikasi
+    if (
+      (cleanEmail.toLowerCase() === 'admin@manggadermayu.com' || cleanEmail.toLowerCase() === 'admin') &&
+      cleanPassword === 'admin123'
+    ) {
       localStorage.setItem('mangga_admin_authenticated', 'true');
       setLoading(false);
       if (onLoginSuccess) onLoginSuccess();
       return;
     }
 
-    try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (error) {
-        throw error;
-      }
-      localStorage.setItem('mangga_admin_authenticated', 'true');
-      if (onLoginSuccess) onLoginSuccess();
-    } catch (err: any) {
-      console.warn('Supabase auth error:', err);
-      // If credentials match default admin
-      if (email.includes('admin') || password.length >= 6) {
-        localStorage.setItem('mangga_admin_authenticated', 'true');
-        if (onLoginSuccess) onLoginSuccess();
-        return;
-      }
-      setError(err.message || 'Gagal login. Gunakan tombol "Masuk Cepat Admin" di bawah.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleQuickLogin = () => {
-    localStorage.setItem('mangga_admin_authenticated', 'true');
-    if (onLoginSuccess) onLoginSuccess();
+    // Jika gagal
+    setError('Email atau password yang Anda masukkan salah.');
+    setLoading(false);
   };
 
   return (
@@ -122,11 +121,13 @@ export default function Login({ onLoginSuccess }: LoginProps) {
           <div style={{
             backgroundColor: '#fee2e2',
             color: '#b91c1c',
-            padding: '12px',
-            borderRadius: '8px',
+            padding: '12px 14px',
+            borderRadius: '10px',
             marginBottom: '20px',
-            fontSize: '13px',
-            textAlign: 'center'
+            fontSize: '13.5px',
+            textAlign: 'center',
+            fontWeight: 600,
+            border: '1px solid #fecaca'
           }}>
             {error}
           </div>
@@ -139,18 +140,20 @@ export default function Login({ onLoginSuccess }: LoginProps) {
             </label>
             <input
               id="email"
-              type="email"
+              type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              autoComplete="username"
               style={{
                 width: '100%',
                 padding: '11px 14px',
                 borderRadius: '10px',
                 border: '1px solid #d1d5db',
-                fontSize: '14px'
+                fontSize: '14px',
+                boxSizing: 'border-box'
               }}
-              placeholder="admin@manggadermayu.com"
+              placeholder="Masukkan email atau username"
             />
           </div>
 
@@ -158,24 +161,46 @@ export default function Login({ onLoginSuccess }: LoginProps) {
             <label htmlFor="password" style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: '#374151', marginBottom: '6px' }}>
               Password
             </label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              style={{
-                width: '100%',
-                padding: '11px 14px',
-                borderRadius: '10px',
-                border: '1px solid #d1d5db',
-                fontSize: '14px'
-              }}
-              placeholder="••••••••"
-            />
-            <span style={{ fontSize: '11px', color: '#9ca3af', marginTop: '4px', display: 'block' }}>
-              Password bawaan default: <strong>admin123</strong>
-            </span>
+            <div style={{ position: 'relative' }}>
+              <input
+                id="password"
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                autoComplete="current-password"
+                style={{
+                  width: '100%',
+                  padding: '11px 40px 11px 14px',
+                  borderRadius: '10px',
+                  border: '1px solid #d1d5db',
+                  fontSize: '14px',
+                  boxSizing: 'border-box'
+                }}
+                placeholder="Masukkan kata sandi"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                aria-label={showPassword ? 'Sembunyikan password' : 'Tampilkan password'}
+                style={{
+                  position: 'absolute',
+                  right: '12px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  color: '#9ca3af',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '4px'
+                }}
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
           </div>
 
           <button
@@ -183,7 +208,7 @@ export default function Login({ onLoginSuccess }: LoginProps) {
             disabled={loading}
             style={{
               width: '100%',
-              padding: '12px',
+              padding: '13px',
               backgroundColor: '#1e4433',
               color: '#fff',
               border: 'none',
@@ -197,40 +222,15 @@ export default function Login({ onLoginSuccess }: LoginProps) {
               gap: '8px',
               opacity: loading ? 0.7 : 1,
               transition: 'background-color 0.2s',
-              marginBottom: '12px'
+              boxShadow: '0 4px 12px rgba(30, 68, 51, 0.2)'
             }}
           >
-            {loading ? 'Memproses...' : (
+            {loading ? 'Memeriksa...' : (
               <>
                 <Lock size={16} />
                 <span>Masuk Sekarang</span>
               </>
             )}
-          </button>
-
-          {/* Quick Demo Login */}
-          <button
-            type="button"
-            onClick={handleQuickLogin}
-            style={{
-              width: '100%',
-              padding: '12px',
-              backgroundColor: '#fef3c7',
-              color: '#92400e',
-              border: '1px solid #fde68a',
-              borderRadius: '10px',
-              fontSize: '14px',
-              fontWeight: 700,
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '8px',
-              transition: 'all 0.2s'
-            }}
-          >
-            <KeyRound size={16} />
-            <span>Masuk Cepat Sebagai Admin</span>
           </button>
         </form>
       </div>
