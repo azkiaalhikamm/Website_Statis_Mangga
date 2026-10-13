@@ -62,16 +62,17 @@ export default function Login({ onLoginSuccess }: LoginProps) {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '24px',
+      padding: 'clamp(16px, 4vw, 32px)',
       fontFamily: 'Plus Jakarta Sans, sans-serif'
     }}>
       <div style={{
         backgroundColor: '#fff',
-        padding: '40px',
+        padding: 'clamp(24px, 6vw, 40px)',
         borderRadius: '20px',
         boxShadow: '0 10px 30px rgba(0, 0, 0, 0.08)',
         width: '100%',
-        maxWidth: '420px'
+        maxWidth: '420px',
+        boxSizing: 'border-box'
       }}>
         {/* Back link */}
         <div style={{ marginBottom: '20px' }}>
