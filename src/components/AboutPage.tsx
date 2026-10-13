@@ -110,12 +110,12 @@ export default function AboutPage() {
         {/* Vision & Mission Grid */}
         <div className="reveal reveal-delay-2" style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           gap: '32px',
           marginBottom: '100px'
         }}>
           
-          <div style={{
+          <div className="about-card" style={{
             backgroundColor: '#fff',
             padding: '48px',
             borderRadius: '24px',
@@ -136,7 +136,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div style={{
+          <div className="about-card" style={{
             backgroundColor: '#1e4433',
             padding: '48px',
             borderRadius: '24px',
@@ -169,7 +169,7 @@ export default function AboutPage() {
         </div>
 
         {/* Statistics Banner */}
-        <div className="reveal reveal-delay-3" style={{
+        <div className="reveal reveal-delay-3 about-stats-banner" style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
           gap: '24px',
@@ -182,7 +182,7 @@ export default function AboutPage() {
           <div>
             <div style={{
               fontFamily: 'Playfair Display, Georgia, serif',
-              fontSize: '48px',
+              fontSize: 'clamp(36px, 8vw, 48px)',
               fontWeight: 800,
               color: '#1e4433',
               marginBottom: '8px',
@@ -202,7 +202,7 @@ export default function AboutPage() {
           <div style={{ textAlign: 'right' }}>
             <div style={{
               fontFamily: 'Playfair Display, Georgia, serif',
-              fontSize: '56px',
+              fontSize: 'clamp(40px, 9vw, 56px)',
               fontWeight: 800,
               color: '#f5a623',
               marginBottom: '8px',
@@ -231,6 +231,22 @@ export default function AboutPage() {
           {t('aboutPage.stats.source')}
         </p>
 
+        <style>{`
+          @media (max-width: 768px) {
+            .about-card {
+              padding: 28px 20px !important;
+            }
+            .about-stats-banner {
+              grid-template-columns: 1fr !important;
+              gap: 32px !important;
+              padding: 28px 20px !important;
+              text-align: center !important;
+            }
+            .about-stats-banner > div:last-child {
+              text-align: center !important;
+            }
+          }
+        `}</style>
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ export default function CTASection() {
 
   return (
     <section
+      id="cta-section"
       style={{
         backgroundColor: '#1e4433',
         padding: '104px 48px',
@@ -168,7 +169,10 @@ export default function CTASection() {
 
       <style>{`
         @media (max-width: 768px) {
-          section > div:last-of-type {
+          #cta-section {
+            padding: 80px 24px !important;
+          }
+          #cta-section > div:last-of-type {
             padding: 0 4px;
           }
         }

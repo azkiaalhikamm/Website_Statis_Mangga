@@ -60,6 +60,7 @@ export default function Navbar() {
         }}
       >
         <nav
+          className="main-navbar"
           style={{
             width: isScrolled ? 'calc(100% - 32px)' : '100%',
             maxWidth: '1280px',
@@ -80,7 +81,8 @@ export default function Navbar() {
           <a
             href="#beranda"
             onClick={handleNavClick}
-            style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}
+            className="navbar-brand-link"
+            style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', flexShrink: 0 }}
           >
             {settings.site_logo_url ? (
               <img 
@@ -93,6 +95,7 @@ export default function Navbar() {
                   objectFit: 'cover',
                   boxShadow: '0 4px 10px rgba(30, 68, 51, 0.15)',
                   transition: 'transform 0.3s ease',
+                  flexShrink: 0,
                 }}
                 onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
                 onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
@@ -116,26 +119,34 @@ export default function Navbar() {
                 <Leaf size={22} color="#f5a623" strokeWidth={2.5} />
               </div>
             )}
-            <div>
-              <div style={{
-                fontFamily: 'Playfair Display, Georgia, serif',
-                fontWeight: 800,
-                fontSize: '17px',
-                color: forceDarkText ? '#1e4433' : '#fff',
-                lineHeight: 1.1,
-                letterSpacing: '0.03em',
-                transition: 'color 0.4s ease',
-              }}>
+            <div style={{ minWidth: 0 }}>
+              <div
+                className="navbar-brand-title"
+                style={{
+                  fontFamily: 'Playfair Display, Georgia, serif',
+                  fontWeight: 800,
+                  fontSize: '17px',
+                  color: forceDarkText ? '#1e4433' : '#fff',
+                  lineHeight: 1.1,
+                  letterSpacing: '0.03em',
+                  transition: 'color 0.4s ease',
+                  whiteSpace: 'nowrap',
+                }}
+              >
                 {settings.site_title}
               </div>
-              <div style={{
-                fontSize: '10px',
-                color: forceDarkText ? '#f5a623' : 'rgba(245,166,35,0.9)',
-                letterSpacing: '0.15em',
-                fontWeight: 600,
-                transition: 'color 0.4s ease',
-                textTransform: 'uppercase'
-              }}>
+              <div
+                className="navbar-brand-subtitle"
+                style={{
+                  fontSize: '10px',
+                  color: forceDarkText ? '#f5a623' : 'rgba(245,166,35,0.9)',
+                  letterSpacing: '0.15em',
+                  fontWeight: 600,
+                  transition: 'color 0.4s ease',
+                  textTransform: 'uppercase',
+                  whiteSpace: 'nowrap',
+                }}
+              >
                 {t('footer.brandSubtitle')}
               </div>
             </div>
@@ -351,6 +362,29 @@ export default function Navbar() {
         }
         @media (min-width: 901px) {
           .mobile-menu { display: none !important; }
+        }
+        @media (max-width: 600px) {
+          .main-navbar {
+            padding: 8px 12px !important;
+            width: calc(100% - 16px) !important;
+          }
+          .navbar-brand-link {
+            gap: 8px !important;
+          }
+          .navbar-brand-link img,
+          .navbar-brand-link div[style*="width: 40"] {
+            width: 34px !important;
+            height: 34px !important;
+            border-radius: 10px !important;
+          }
+          .navbar-brand-title {
+            font-size: 14.5px !important;
+            white-space: nowrap !important;
+          }
+          .navbar-brand-subtitle {
+            font-size: 8.5px !important;
+            white-space: nowrap !important;
+          }
         }
       `}</style>
     </>

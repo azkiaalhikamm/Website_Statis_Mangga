@@ -1,4 +1,4 @@
-import { Leaf, MapPin, Phone } from 'lucide-react';
+import { Leaf, MapPin, Phone, Lock } from 'lucide-react';
 import WhatsappIcon from './icons/WhatsappIcon';
 
 // Custom brand icon SVGs (Lucide removed brand icons)
@@ -18,8 +18,6 @@ const FacebookIcon = ({ size = 18 }: { size?: number }) => (
 import { WHATSAPP_URL, WHATSAPP_NUMBER } from '../data';
 import { useLanguage } from '../context/LanguageContext';
 
-
-
 export default function Footer() {
   const { t } = useLanguage();
 
@@ -31,7 +29,8 @@ export default function Footer() {
   ];
 
   const handleNav = (href: string) => {
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    window.location.hash = href;
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -216,13 +215,34 @@ export default function Footer() {
           }}>
             {t('footer.copyright')}
           </p>
-          <p style={{
-            fontFamily: 'Plus Jakarta Sans, sans-serif',
-            fontSize: '13px',
-            color: 'rgba(255,255,255,0.35)',
-          }}>
-            {t('footer.tagline')}
-          </p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+            <p style={{
+              fontFamily: 'Plus Jakarta Sans, sans-serif',
+              fontSize: '13px',
+              color: 'rgba(255,255,255,0.35)',
+              margin: 0,
+            }}>
+              {t('footer.tagline')}
+            </p>
+            <a
+              href="#admin"
+              style={{
+                fontFamily: 'Plus Jakarta Sans, sans-serif',
+                fontSize: '12px',
+                color: 'rgba(255,255,255,0.3)',
+                textDecoration: 'none',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '4px',
+                transition: 'color 0.2s ease',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = '#f5a623')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.3)')}
+            >
+              <Lock size={12} />
+              <span>Admin</span>
+            </a>
+          </div>
         </div>
       </div>
 

@@ -155,6 +155,7 @@ export default function Hero() {
           {/* CTA Buttons */}
           <div
             ref={ctaRef}
+            className="hero-cta-container"
             style={{
               opacity: 0,
               transform: 'translateY(20px)',
@@ -168,6 +169,7 @@ export default function Hero() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
+              className="hero-btn-primary"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -198,6 +200,7 @@ export default function Hero() {
             </a>
             <a
               href="#produk"
+              className="hero-btn-secondary"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -255,7 +258,29 @@ export default function Hero() {
       <style>{`
         @media (max-width: 768px) {
           #beranda > div:last-of-type {
-            padding: 100px 24px 60px !important;
+            padding: 100px 20px 60px !important;
+          }
+        }
+        @media (max-width: 600px) {
+          .hero-cta-container {
+            display: flex !important;
+            flex-direction: row !important;
+            gap: 10px !important;
+            width: 100% !important;
+          }
+          .hero-cta-container > a {
+            flex: 1 1 0 !important;
+            padding: 14px 10px !important;
+            font-size: 13.5px !important;
+            justify-content: center !important;
+            text-align: center !important;
+            white-space: nowrap !important;
+          }
+        }
+        @media (max-width: 360px) {
+          .hero-cta-container > a {
+            padding: 12px 6px !important;
+            font-size: 12px !important;
           }
         }
       `}</style>

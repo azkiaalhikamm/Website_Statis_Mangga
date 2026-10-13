@@ -74,12 +74,22 @@ const translations = {
     'products.orderViaWhatsapp': 'Pesan via WhatsApp',
     
     // Products Page
-    'productsPage.badge': 'KATALOG PRODUK',
+    'productsPage.badge': 'KATALOG RESMI PRODUK',
     'productsPage.title1': 'Koleksi Mangga ',
     'productsPage.title2': 'Terbaik.',
     'productsPage.desc': 'Temukan berbagai varietas mangga pilihan asli dari Indramayu. Setiap buah dipanen pada tingkat kematangan optimal untuk menjamin rasa manis alami yang sempurna.',
     'productsPage.specialPrice': 'Harga Spesial',
     'productsPage.sizeWeight': 'Ukuran/Berat',
+    'productsPage.filterAll': 'Semua Varietas',
+    'productsPage.orderWA': 'Pesan via WhatsApp',
+    'productsPage.viewDetail': 'Detail Lengkap',
+    'productsPage.guarantee1': '100% Panen Matang Pohon',
+    'productsPage.guarantee2': 'Garansi Segar Sampai Rumah',
+    'productsPage.guarantee3': 'Sertifikat Indikasi Geografis',
+    'productsPage.guarantee4': 'Kemasan Ekstra Aman Anti-Bentur',
+    'productsPage.customOrderTitle': 'Pesanan Jumlah Besar atau Hampers Buah?',
+    'productsPage.customOrderDesc': 'Kami melayani pesanan grosir ke seluruh Indonesia, parcel buah korporat, acara keluarga, dan reseller.',
+    'productsPage.customOrderBtn': 'Konsultasi Pesanan Khusus',
     
     // Why Us / Quality Promise
     'whyus.title': 'Jaminan Mutu',
@@ -267,12 +277,22 @@ const translations = {
     'products.orderViaWhatsapp': 'Order via WhatsApp',
     
     // Products Page
-    'productsPage.badge': 'PRODUCT CATALOG',
+    'productsPage.badge': 'OFFICIAL PRODUCT CATALOG',
     'productsPage.title1': 'Best Mango ',
     'productsPage.title2': 'Collection.',
     'productsPage.desc': 'Discover various selected authentic mango varieties from Indramayu. Each fruit is harvested at optimal maturity to guarantee perfect natural sweetness.',
     'productsPage.specialPrice': 'Special Price',
     'productsPage.sizeWeight': 'Size/Weight',
+    'productsPage.filterAll': 'All Varieties',
+    'productsPage.orderWA': 'Order via WhatsApp',
+    'productsPage.viewDetail': 'Full Details',
+    'productsPage.guarantee1': '100% Tree-Ripened Harvest',
+    'productsPage.guarantee2': 'Fresh to Door Guarantee',
+    'productsPage.guarantee3': 'Geographical Indication',
+    'productsPage.guarantee4': 'Crash-Proof Safe Packaging',
+    'productsPage.customOrderTitle': 'Bulk Orders or Fruit Hampers?',
+    'productsPage.customOrderDesc': 'We serve wholesale orders across Indonesia, corporate gift parcels, family events, and reseller programs.',
+    'productsPage.customOrderBtn': 'Consult Custom Order',
     
     // Why Us / Quality Promise
     'whyus.title': 'Quality Assurance',
