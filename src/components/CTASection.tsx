@@ -5,10 +5,6 @@ import { useLanguage } from '../context/LanguageContext';
 export default function CTASection() {
   const { t } = useLanguage();
 
-  const scrollToProducts = () => {
-    document.querySelector('#produk')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <section
       id="cta-section"
@@ -136,8 +132,12 @@ export default function CTASection() {
             <ShoppingBag size={18} />
             {t('cta.btnWa')}
           </a>
-          <button
-            onClick={scrollToProducts}
+          <a
+            href="#produk"
+            onClick={() => {
+              window.location.hash = '#produk';
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -152,18 +152,19 @@ export default function CTASection() {
               border: '1.5px solid rgba(255,255,255,0.25)',
               cursor: 'pointer',
               transition: 'all 0.3s ease',
+              textDecoration: 'none',
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.6)';
-              (e.currentTarget as HTMLButtonElement).style.backgroundColor = 'rgba(255,255,255,0.06)';
+              (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(255,255,255,0.6)';
+              (e.currentTarget as HTMLAnchorElement).style.backgroundColor = 'rgba(255,255,255,0.06)';
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.25)';
-              (e.currentTarget as HTMLButtonElement).style.backgroundColor = 'transparent';
+              (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(255,255,255,0.25)';
+              (e.currentTarget as HTMLAnchorElement).style.backgroundColor = 'transparent';
             }}
           >
             {t('cta.btnProducts')}
-          </button>
+          </a>
         </div>
       </div>
 
